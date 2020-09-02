@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src = "node_modules/@tensorflow/tfjs"></script>
+    <title>SpeechRecognition</title>
+</head>
+<body>
+    <video autoplay></video>
+    <audio autoplay></audio>
+    <script>
+        var constraints = { audio: true, video: { width: 1920, height: 1080 } }; 
+
+        navigator.mediaDevices.getUserMedia(constraints)
+        .then(function(mediaStream) {
+        var video = document.querySelector('video');
+        video.srcObject = mediaStream;
+        video.onloadedmetadata = function(e) {
+            video.play();
+        };
+        })
+        .catch(function(err) { console.log(err.name + ": " + err.message); }); 
+    </script>
+</body>
+</html>
